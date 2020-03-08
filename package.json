@@ -4,8 +4,8 @@
     "description": "Picture server for fleet.moe",
     "main": "index.js",
     "scripts": {
-        "start": "node index.js",
-        "test": "jest"
+        "start": "node start.js",
+        "test": "jest ./tests/"
     },
     "repository": {
         "type": "git",
@@ -30,6 +30,7 @@
     "devDependencies": {
         "eslint": "^6.8.0",
         "eslint-config-koot": "^1.6.0",
+        "fs-extra": "^8.1.0",
         "husky": "^4.2.3",
         "jest": "^25.1.0",
         "lint-staged": "^10.0.8",
