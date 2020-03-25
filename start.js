@@ -3,7 +3,10 @@ const helmet = require('koa-helmet');
 const send = require('koa-send');
 const path = require('path');
 
+/** 内存缓存 */
 const cache = new Map();
+/** 图片文件地址缓存 */
+const cacheFile = new Map();
 const extentions = ['png', 'webp'];
 const { dirImages, dirCache } = require('./index');
 
@@ -16,6 +19,9 @@ const start = async () => {
     const app = new Koa();
     app.use(helmet());
     app.use(async (ctx, next) => {
+        // TODO use cache here
+        // TODO use cacheFile here
+
         const paths = ctx.path.split('/').filter((s) => !!s);
         const md5 = paths.shift();
         if (typeof md5 !== 'string' || md5.length !== 32) return await next();
@@ -31,6 +37,7 @@ const start = async () => {
 
         if (!mask && ext === 'png') {
             // TODO gzip and read gzip from cache
+            // TODO use cache
             return await send(
                 ctx,
                 `${md5.substr(0, 2)}/${md5.substr(2)}.${ext}`,
