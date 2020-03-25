@@ -1,0 +1,17 @@
+.cache
+.eslintignore
+.eslintrc.js
+.git
+.gitignore
+.logs
+.prettierignore
+.prettierrc.js
+.vscode
+docker-compose*
+Docerfile*
+jsconfig.json
+LICENSE
+node_modules
+node-debug.log
+README.md
+tsconfig.json
