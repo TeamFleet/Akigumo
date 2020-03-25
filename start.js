@@ -2,16 +2,21 @@ const Koa = require('koa');
 const helmet = require('koa-helmet');
 const send = require('koa-send');
 const path = require('path');
+const LRU = require('lru-cache');
 
+const maxage = 1 * 365 * 24 * 60 * 60 * 1000; // 1 year
 /** 内存缓存 */
-const cache = new Map();
+const cache = new LRU({
+    max: 500,
+    maxAge: maxage,
+});
 /** 图片文件地址缓存 */
 const cacheFile = new Map();
 const extentions = ['png', 'webp'];
 const { dirImages, dirCache } = require('./index');
 
 const sendOptions = {
-    maxage: 1 * 365 * 24 * 60 * 60 * 1000, // 1 year
+    maxage,
     immutable: true,
 };
 

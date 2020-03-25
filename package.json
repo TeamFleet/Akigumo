@@ -28,6 +28,7 @@
         "koa-helmet": "^5.2.0",
         "koa-router": "^8.0.8",
         "koa-send": "^5.0.0",
+        "lru-cache": "^5.1.1",
         "sharp": "^0.25.2"
     },
     "devDependencies": {
