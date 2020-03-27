@@ -5,6 +5,7 @@
     "main": "index.js",
     "scripts": {
         "start": "node start.js",
+        "dev": "cross-env NODE_ENV=development pm2 start start.js --watch && pm2 logs",
         "test": "jest ./tests/",
         "up": "yarn upgrade-interactive --latest"
     },
@@ -25,6 +26,8 @@
     "private": true,
     "dependencies": {
         "koa": "^2.11.0",
+        "koa-cash": "^2.2.0",
+        "koa-convert": "^1.2.0",
         "koa-helmet": "^5.2.0",
         "koa-router": "^8.0.8",
         "koa-send": "^5.0.0",
@@ -32,12 +35,14 @@
         "sharp": "^0.25.2"
     },
     "devDependencies": {
+        "cross-env": "^7.0.2",
         "eslint": "^6.8.0",
         "eslint-config-koot": "^1.6.0",
         "fs-extra": "^9.0.0",
         "husky": "^4.2.3",
-        "jest": "^25.1.0",
+        "jest": "^25.2.3",
         "lint-staged": "^10.0.9",
+        "pm2": "^4.2.3",
         "prettier": "^2.0.2",
         "prettier-eslint": "^9.0.1",
         "react": "^16.13.1"
