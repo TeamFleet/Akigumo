@@ -123,6 +123,9 @@ const start = async () => {
         return await send(ctx, filename, sendOptions);
     });
     app.listen(8080);
+
+    // eslint-disable-next-line no-console
+    console.log('Akigumo listening port 8080');
 };
 
 start().catch((err) => {
