@@ -1,7 +1,9 @@
+const argv = require('yargs').argv;
+
 const App = require('./src/app');
 
 const start = async () => {
-    const app = new App(8080);
+    const app = new App(process.env.AKIGUMO_PORT || argv.port || 8080);
     await app.start();
 };
 
