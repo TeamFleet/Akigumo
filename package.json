@@ -5,6 +5,7 @@
     "main": "index.js",
     "scripts": {
         "start": "node start.js",
+        "start:port": "cross-env AKIGUMO_PORT=8081 node start.js",
         "dev": "cross-env NODE_ENV=development pm2 start start.js --watch && pm2 logs",
         "test": "jest ./tests/",
         "up": "yarn upgrade-interactive --latest"
