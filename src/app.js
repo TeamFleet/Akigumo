@@ -95,10 +95,13 @@ class App {
             }
 
             const basename = `${md5.substr(0, 2)}/${md5.substr(2)}`;
-            const fileOriginal = path.resolve(dirImages, `${basename}.png`);
+            let fileOriginal = path.resolve(dirImages, `${basename}.png`);
 
-            if (!fs.existsSync(fileOriginal))
-                throw new Error(`file for ${basename} not exist`);
+            if (!fs.existsSync(fileOriginal)) {
+                fileOriginal = path.resolve(dirImages, `${basename}.jpg`);
+                if (!fs.existsSync(fileOriginal))
+                    throw new Error(`file for ${basename} not exist`);
+            }
 
             const baseFilename = `${basename}${mask ? `.m${mask}` : ''}`;
             let filename = `${baseFilename}.png`;
