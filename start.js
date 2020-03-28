@@ -21,6 +21,9 @@ start().catch((err) => {
 // https://akigumo.fleet.moe/d5a0046cd109ab7c66219c7f375c9126/m2
 // https://akigumo.fleet.moe/d5a0046cd109ab7c66219c7f375c9126/m2/webp
 
+// entity image
+// https://akigumo.fleet.moe/0a3ade3a779b51b6a39742b6e1aa4e5f
+
 // entity banner
 // https://akigumo.fleet.moe/0a9d5a3ce91c4be10756000b0dc025fe
 // https://akigumo.fleet.moe/0a9d5a3ce91c4be10756000b0dc025fe/webp
