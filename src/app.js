@@ -85,7 +85,8 @@ class App {
                 return await next();
 
             let ext = 'png';
-            let mask = false;
+            let extOriginal = 'png';
+            let mask;
 
             if (paths.length) {
                 if (extentions.includes(paths[paths.length - 1]))
@@ -94,17 +95,27 @@ class App {
                     mask = paths[0].substr(1);
             }
 
+            /** 根据 MD5 值的基础文件名 (不包含扩展名) */
             const basename = `${md5.substr(0, 2)}/${md5.substr(2)}`;
-            let fileOriginal = path.resolve(dirImages, `${basename}.png`);
-
+            /** 原始文件的硬盘路径 */
+            let fileOriginal = path.resolve(
+                dirImages,
+                `${basename}.${extOriginal}`
+            );
+            // 如果 .png 文件不存在，检查 .jpg 文件
             if (!fs.existsSync(fileOriginal)) {
                 fileOriginal = path.resolve(dirImages, `${basename}.jpg`);
-                if (!fs.existsSync(fileOriginal))
+                if (!fs.existsSync(fileOriginal)) {
                     throw new Error(`file for ${basename} not exist`);
+                } else {
+                    extOriginal = 'jpg';
+                }
             }
 
+            /** 结果文件的基础文件名 (不包含扩展名) */
             const baseFilename = `${basename}${mask ? `.m${mask}` : ''}`;
-            let filename = `${baseFilename}.png`;
+            /** 结果文件的文件名 */
+            let filename = `${baseFilename}.${extOriginal}`;
             let file = path.resolve(dirCache, filename);
             await fs.ensureDir(path.dirname(file));
 
@@ -148,8 +159,7 @@ class App {
                 console.warn({
                     md5,
                     mask,
-                    ext,
-                    filename,
+                    file: filename,
                 });
 
             return await send(ctx, filename, sendOptions);
