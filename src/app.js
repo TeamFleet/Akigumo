@@ -45,6 +45,8 @@ class App {
 
     /** Koa app */
     app = undefined;
+    server = undefined;
+    silent = false;
 
     constructor(options = {}) {
         Object.assign(this, App.parseOptions(options));
@@ -158,13 +160,14 @@ class App {
         return this.app;
     }
 
-    async start(port = this.port) {
+    async start(port = this.port, callback) {
         if (!this.app) await this.create();
 
-        this.app.listen(port);
+        this.server = this.app.listen(port);
 
-        // eslint-disable-next-line no-console
-        console.log(`Akigumo listening port ${port}`);
+        if (!this.silent)
+            // eslint-disable-next-line no-console
+            console.log(`Akigumo listening port ${port}`);
     }
 }
 
