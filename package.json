@@ -36,7 +36,7 @@
         "koa-router": "^10.1.1",
         "koa-send": "^5.0.1",
         "lru-cache": "^6.0.0",
-        "sharp": "^0.27.0",
+        "sharp": "^0.30.5",
         "yargs": "^17.1.1"
     },
     "devDependencies": {
