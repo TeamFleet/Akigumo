@@ -58,6 +58,7 @@ const tests = [
         '999f940b1c4141bc802127ba5a8c9cfb',
         '0e3c2a96424acf05200afac906e41a6d',
         '9abed1b82d899d09ee518fe288ab03f1',
+        '6be7a35427d5cf93133cfd56cecd8def',
     ].map((key) => ({
         uri: `/${key}/webp`,
         sample: `${key}.webp`,
