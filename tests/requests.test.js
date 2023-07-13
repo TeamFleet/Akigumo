@@ -51,10 +51,17 @@ const tests = [
         uri: '/ad3343fc27189e94b5d2b9d47b343efa',
         sample: 'ad3343fc27189e94b5d2b9d47b343efa.png',
     },
-    {
-        uri: '/b472e5d5a183ae17f7fdba4ef9c020bd/webp',
-        sample: 'b472e5d5a183ae17f7fdba4ef9c020bd.webp',
-    },
+
+    ...[
+        'b472e5d5a183ae17f7fdba4ef9c020bd',
+        '45476b12d3b4f79e0ceb025cb9063e4f',
+        '999f940b1c4141bc802127ba5a8c9cfb',
+        '0e3c2a96424acf05200afac906e41a6d',
+        '9abed1b82d899d09ee518fe288ab03f1',
+    ].map((key) => ({
+        uri: `/${key}/webp`,
+        sample: `${key}.webp`,
+    })),
 ];
 
 // ============================================================================
