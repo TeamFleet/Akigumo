@@ -5,7 +5,7 @@ const helmet = require('koa-helmet');
 const send = require('koa-send');
 const cash = require('koa-cash');
 const convert = require('koa-convert');
-const LRU = require('lru-cache');
+const { LRUCache } = require('lru-cache');
 const sharp = require('sharp');
 const { dirImages, dirCache, dirMasks } = require('../');
 
@@ -14,7 +14,7 @@ const { dirImages, dirCache, dirMasks } = require('../');
 /** 默认缓存有效期 (1年) */
 const maxage = 1 * 365 * 24 * 60 * 60 * 1000;
 /** 基于访问量的缓存 */
-const cache = new LRU({
+const cache = new LRUCache({
     max: 500,
     maxAge: maxage,
 });
@@ -64,8 +64,8 @@ class App {
                 cash({
                     get: (key) => cache.get(key),
                     set: (key, value) => cache.set(key, value),
-                })
-            )
+                }),
+            ),
         );
         app.use(async function (ctx, next) {
             const cashed = await ctx.cashed();
@@ -113,7 +113,7 @@ class App {
             if (!mask) {
                 await fs.copyFile(
                     fileOriginal,
-                    path.resolve(dirCache, filename)
+                    path.resolve(dirCache, filename),
                 );
             } else if (mask) {
                 const image = sharp(fileOriginal);
